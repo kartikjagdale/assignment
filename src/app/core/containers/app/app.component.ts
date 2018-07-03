@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CaseStudyService } from './../../services/case_study.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  
+  userCaseStudiesObj: Object;
+	
+  constructor(private caseStudyService: CaseStudyService) {		
+	  this.userCaseStudiesObj = this.getUserCaseStudies();
+  }
+
+  getUserCaseStudies() {
+    return this.caseStudyService.getUserCasteStudies();
+  }
 }
