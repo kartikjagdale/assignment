@@ -8,7 +8,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
 export class SidebarComponent {
   @Input() cases: any;
   @Input() questions: any;
-  @Output() categoryClick = new EventEmitter<boolean>();
+  @Output() categoryClick = new EventEmitter<any>();
   constructor() { }
 
   onQuestionClicked(index=0){

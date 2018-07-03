@@ -8,7 +8,7 @@ import { Input, Output, EventEmitter, Component,  } from '@angular/core';
 export class CaseContentComponent {
   @Input()selectedCase: any;
   @Input() selectedIndex: number;
-  @Output() nextPrevClick = new EventEmitter<number>;
+  @Output() nextPrevClick = new EventEmitter<any>();
   constructor() {
   }
 

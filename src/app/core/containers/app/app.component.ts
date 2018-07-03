@@ -9,29 +9,27 @@ import { CaseStudyService } from './../../services/case_study.service';
 export class AppComponent {
 
   userCaseStudiesObj: any;
-  isQuestionsSelected = false;
+  isQuestionSelected = false;
   selectedQuestion: any;
   selectedCase: any;
   selectedIndex: number = 0;
   constructor(private caseStudyService: CaseStudyService) {		
-	  this.getUserCaseStudies()
+    this.caseStudyService.getAccessToken().subscribe(res => {
+      localStorage.setItem('access_token', res.access_token);
+      this.getUserCaseStudies();
+    });
   }
 
   getUserCaseStudies() {
     return this.caseStudyService.getUserCasteStudies()
-      .subscribe(cases =>  { 
-        this.userCaseStudiesObj = cases.user_company_case_study;
+      .subscribe(res =>  {
+        this.userCaseStudiesObj = res.user_company_case_study;
     })
   }
 
   // Returns Time Elapsed in Seconds;
   getTimeElapsed(): number {
     return this.userCaseStudiesObj.time_elapsed;
-  }
-
-  // Toggles between Questions and Cases
-  toggleCategoryelected() {
-    this.isQuestionsSelected = !this.isQuestionsSelected;
   }
 
   // Returns selected Question or first Question in an array

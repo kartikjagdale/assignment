@@ -8,7 +8,7 @@ import { Input, Output, EventEmitter, Component,  } from '@angular/core';
 export class QuestionContentComponent {
   @Input() selectedQuestion: any;
   @Input() selectedIndex: number;
-  @Output() nextPrevClick = new EventEmitter<number>;
+  @Output() nextPrevClick = new EventEmitter<any>();
   constructor() { }
 
   // trigger on click of either next or prev
