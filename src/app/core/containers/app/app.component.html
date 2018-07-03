@@ -1,3 +1,31 @@
-<div>
-  {{ userCaseStudiesObj | async | json }}
+<!-- Main Page Part -->
+<div *ngIf="userCaseStudiesObj as userCaseStudies; else loading">
+  <app-header [timeElapsed]="getTimeElapsed()">
+  </app-header>
+
+  <app-sidedbar
+    [cases]="userCaseStudies.company_case_study.pages"
+    [questions]="userCaseStudies.company_case_study.questions"
+    class="left-side">
+  </app-sidedbar>
+
+  <div class="right-side">
+    <app-case-content
+      *ngIf="!isQuestionSelected; else questionContent"
+      [selectedCase]="getSelectedCase()"
+      >
+    </app-case-content>   
+    <ng-template #questionContent>
+      <app-question-content 
+      *ngIf="isQuestionSelected"
+      [selectedQuestion]="getSelectedQuestion()"
+      >
+      </app-question-content>    
+    </ng-template> 
+  </div>
 </div>
+
+<!-- Else Show Loading -->
+<ng-template #loading>
+  <h3>Loading Data...</h3>
+</ng-template>
