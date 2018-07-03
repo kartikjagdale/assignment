@@ -12,13 +12,16 @@ export class AppComponent {
   isQuestionsSelected = false;
   selectedQuestion: any;
   selectedCase: any;
+  selectedIndex: number = 0;
   constructor(private caseStudyService: CaseStudyService) {		
 	  this.getUserCaseStudies()
   }
 
   getUserCaseStudies() {
     return this.caseStudyService.getUserCasteStudies()
-      .subscribe(cases => this.userCaseStudiesObj = cases.user_company_case_study )
+      .subscribe(cases =>  { 
+        this.userCaseStudiesObj = cases.user_company_case_study;
+    })
   }
 
   // Returns Time Elapsed in Seconds;
@@ -39,5 +42,21 @@ export class AppComponent {
   // Returns selected Case or first Case in an array
   getSelectedCase() {
     return this.selectedCase || this.userCaseStudiesObj.company_case_study.pages[0]; 
+  }
+
+  // Changes category to case or question and 
+  // selectes content as per index value
+  changeCategoryAndSelectContent(event: any) {
+    if(event.isQuestionSelected){
+      const questions = this.userCaseStudiesObj.company_case_study.questions;
+      this.selectedIndex = event.index > (questions.length - 1) ? 0 : event.index;
+      this.selectedQuestion = questions[this.selectedIndex]
+      this.isQuestionSelected = true;
+    } else {
+      const cases = this.userCaseStudiesObj.company_case_study.pages;
+      this.selectedIndex = event.index > (cases.length - 1) ? 0 : event.index;
+      this.selectedCase = cases[this.selectedIndex]
+      this.isQuestionSelected = false;
+    }
   }
 }

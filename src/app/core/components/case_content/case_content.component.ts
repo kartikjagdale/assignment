@@ -1,4 +1,4 @@
-import { Input, Component } from '@angular/core';
+import { Input, Output, EventEmitter, Component,  } from '@angular/core';
 
 @Component({
   selector: 'app-case-content',
@@ -7,6 +7,13 @@ import { Input, Component } from '@angular/core';
 })
 export class CaseContentComponent {
   @Input()selectedCase: any;
+  @Input() selectedIndex: number;
+  @Output() nextPrevClick = new EventEmitter<number>;
   constructor() {
+  }
+
+  // trigger on click of either next or prev
+  onNavigateClick(index) {
+    this.nextPrevClick.emit({ index: index, isQuestionSelected: false });
   }
 }

@@ -1,3 +1,15 @@
 <div [innerHTML]="selectedCase.body">
-  
 </div>
+<div>
+  <span>
+    <button 
+      style="float:left"
+      *ngIf="selectedIndex > 0" 
+      (click)="onNavigateClick(selectedIndex - 1)">Previous</button>
+
+    <button 
+      style="float:right" 
+      (click)="onNavigateClick(selectedIndex + 1)">next</button>
+  </span>
+</div>
+  

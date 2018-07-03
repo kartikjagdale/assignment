@@ -1,13 +1,17 @@
 <div>
   <ul>
-    <li>Cases</li>
-    <li>Questions
+    <li (click)="onCasesClicked()">Cases</li>
+    <li (click)="onQuestionClicked()">
+      Questions
+    </li>
+    <hr>
     <ul>
-      <li *ngFor="let question of questions; index as i">
+      <li 
+        *ngFor="let question of questions; index as i"
+        (click)="onQuestionClicked(i)">
         Question {{ i +  1 }}
       </li>
     </ul>
-    </li>
   </ul>  
 </div>
 

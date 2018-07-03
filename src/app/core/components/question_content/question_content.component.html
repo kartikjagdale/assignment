@@ -1,3 +1,17 @@
-<div [innerHtml]="selectedQuestion.body">
+<div>
+  <div [innerHtml]="selectedQuestion.body">
+  </div>  
+  <textarea>
+  </textarea>
+</div>
+
   
+
+<div>
+  <span>
+    <button 
+      *ngIf="selectedIndex > 0" 
+      (click)="onNavigateClick(selectedIndex - 1)">Previous</button>
+    <button (click)="onNavigateClick(selectedIndex + 1)">Next</button>
+  </span>
 </div>
